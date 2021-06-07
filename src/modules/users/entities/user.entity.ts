@@ -1,6 +1,26 @@
+import {
+  Column,
+  PrimaryGeneratedColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  Entity,
+} from 'typeorm';
+import { UtilsService } from 'utils/utils.service';
 
+@Entity({ name: 'users' })
 export class UserEntity {
-    id: number
-    email: string;
-    password: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
+
+  @Column({ unique: true })
+  email: string;
+
+  @Column()
+  password: string;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    this.password = UtilsService.generateHash(this.password);
+  }
 }
