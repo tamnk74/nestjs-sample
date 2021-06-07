@@ -17,7 +17,7 @@ async function bootstrap() {
     new ExpressAdapter(),
     { cors: true },
   );
-  app.enableCors();
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

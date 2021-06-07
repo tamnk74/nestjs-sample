@@ -46,6 +46,22 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+## database
+
+```bash
+# create a migration
+$ npm run migration:create [name]
+
+# run migration
+$ npm run db:migrate
+
+# create a seeding
+$ npm run seed:create [name]
+
+# run seeding
+$ npm run db:seed
+
+```
 
 ## Test
 
