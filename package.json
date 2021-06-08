@@ -19,12 +19,12 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "db:migrate": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run -f src/config/orm.config",
-    "migration:create": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create -f src/config/orm.config -n",
-    "migration:revert": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert -f src/config/orm.config",
-    "db:rollback": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js schema:drop -f src/config/orm.config",
-    "db:seed": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run -f src/config/seeder.config",
-    "seed:create": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create -f src/config/seeder.config -n"
+    "db:migrate": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run -f src/common/config/orm.config",
+    "migration:create": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create -f src/common/config/orm.config -n",
+    "migration:revert": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert -f src/common/config/orm.config",
+    "db:rollback": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js schema:drop -f src/common/config/orm.config",
+    "db:seed": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run -f src/common/config/seeder.config",
+    "seed:create": "ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:create -f src/common/config/seeder.config -n"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.17",

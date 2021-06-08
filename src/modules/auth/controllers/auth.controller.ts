@@ -10,10 +10,14 @@ import { JwtAuthGuard } from 'guards';
 import { UserLoginDto } from '../dtos';
 import { AuthService } from '../services';
 import { User } from 'decorators';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('')
 export class AuthController {
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private configService: ConfigService,
+  ) {
     console.log('controller');
   }
 
@@ -36,5 +40,10 @@ export class AuthController {
   @Get('dec')
   getDecorator(@User() user) {
     return user;
+  }
+
+  @Get('env')
+  getEnv() {
+    return this.configService;
   }
 }

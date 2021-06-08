@@ -1,6 +1,6 @@
-import * as ormConfig from './orm.config';
+import ormConfig from './orm.config';
 
-module.exports = {
+export default {
   ...ormConfig,
   migrationsTableName: 'orm_seeeders',
   migrations: ['src/database/seed/*{.ts,.js}'],
