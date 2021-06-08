@@ -9,10 +9,13 @@ import {
 import { JwtAuthGuard } from 'guards';
 import { UserLoginDto } from '../dtos';
 import { AuthService } from '../services';
+import { User } from 'decorators';
 
 @Controller('')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    console.log('controller');
+  }
 
   @Post('login')
   async login(@Body() userLoginDto: UserLoginDto) {
@@ -28,5 +31,10 @@ export class AuthController {
   @Get('me')
   getProfile(@Request() req) {
     return req.user;
+  }
+
+  @Get('dec')
+  getDecorator(@User() user) {
+    return user;
   }
 }

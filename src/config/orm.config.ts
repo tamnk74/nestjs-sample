@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 
 const configService = new ConfigService();
+console.log('user', process.env.POSTGRES_USER);
 
 module.exports = {
   type: 'postgres',
