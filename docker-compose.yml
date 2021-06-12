@@ -24,13 +24,13 @@ services:
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
     volumes:
-      - dbdata:/data/postgres
+      - ${DOCKER_VOLUMN:-~/.docker/data}/postgres:/data/postgres
     ports:
       - 5432:5432
     networks:
       - node-network
     restart: unless-stopped
-    
+
   pgadmin:
     container_name: pgadmin_container
     image: dpage/pgadmin4
@@ -39,13 +39,13 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
-      - pgadmin:/root/.pgadmin
+      - ${DOCKER_VOLUMN:-~/.docker/data}/pgadmin:/root/.pgadmin
     ports:
-      - "${PGADMIN_PORT:-5050}:80"
+      - '${PGADMIN_PORT:-5050}:80'
     networks:
       - node-network
     restart: unless-stopped
-    
+
   redis:
     image: redis:alpine
     container_name: redis

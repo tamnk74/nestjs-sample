@@ -17,9 +17,7 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private configService: ConfigService,
-  ) {
-    console.log('controller');
-  }
+  ) {}
 
   @Post('login')
   async login(@Body() userLoginDto: UserLoginDto) {
