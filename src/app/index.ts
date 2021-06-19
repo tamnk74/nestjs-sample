@@ -20,7 +20,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         database: configService.get('POSTGRES_DB'),
         entities: [__dirname + '/../modules/**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/../migrations/*{.ts,.js}'],
-        synchronize: false,
+        synchronize: true,
         migrationsRun: true,
         logging: true,
       }),

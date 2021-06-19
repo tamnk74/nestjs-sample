@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, forwardRef, Inject } from '@nestjs/common';
 import { UserService } from '../../users/services';
 import { JwtService } from '@nestjs/jwt';
 import { UserLoginDto } from '../dtos';
@@ -10,7 +10,7 @@ import { UserEntity } from 'modules/users/entities';
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService,
+    @Inject(forwardRef(() => JwtService)) private jwtService: JwtService,
   ) {}
 
   async validateUser(userLoginDto: UserLoginDto): Promise<any> {
