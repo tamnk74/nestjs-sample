@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "vscode.typescript-language-features",
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "prettier.singleQuote": true
+}
