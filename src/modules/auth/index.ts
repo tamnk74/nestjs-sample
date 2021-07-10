@@ -6,11 +6,13 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UnitOfWorkModule } from 'database/unit-of-work';
 
 @Module({
   imports: [
     forwardRef(() => UserModule),
     PassportModule,
+    UnitOfWorkModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

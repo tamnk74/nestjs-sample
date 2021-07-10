@@ -9,14 +9,15 @@ import {
 import { JwtAuthGuard } from 'guards';
 import { UserLoginDto } from '../dtos';
 import { AuthService } from '../services';
-import { User } from 'decorators';
 import { ConfigService } from '@nestjs/config';
+import { UnitOfWork } from 'database/unit-of-work';
 
 @Controller('')
 export class AuthController {
   constructor(
     private authService: AuthService,
     private configService: ConfigService,
+    private uow: UnitOfWork,
   ) {}
 
   @Post('login')
@@ -35,9 +36,12 @@ export class AuthController {
     return req.user;
   }
 
-  @Get('dec')
-  getDecorator(@User() user) {
-    return user;
+  @Post('auth/users')
+  async getDecorator(@Body() users) {
+    const result = await this.uow.withTransaction(() => {
+      return this.authService.createUsers(users);
+    });
+    return result;
   }
 
   @Get('env')

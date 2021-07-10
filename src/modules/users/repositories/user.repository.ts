@@ -1,6 +1,6 @@
 import { UserEntity } from '../entities';
-import { Repository } from 'typeorm';
 import { EntityRepository } from 'typeorm/decorator/EntityRepository';
+import { BaseRepository } from 'database/unit-of-work';
 
 @EntityRepository(UserEntity)
-export class UserRepository extends Repository<UserEntity> {}
+export class UserRepository extends BaseRepository<UserEntity> {}

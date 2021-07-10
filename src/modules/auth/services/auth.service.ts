@@ -28,4 +28,7 @@ export class AuthService {
     const payload = { username: user.email, sub: user.id };
     return this.jwtService.sign(payload);
   }
+  async createUsers(users: UserEntity[]) {
+    return this.userService.createUsers(users);
+  }
 }
