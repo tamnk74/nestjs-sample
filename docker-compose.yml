@@ -1,7 +1,9 @@
 version: '3.5'
 services:
   nest-app:
-    build: .
+    build:
+      context: .
+      target: deps
     image: nest_app
     container_name: nest_app_container
     command: npm start

@@ -8,7 +8,7 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async findOne(email: string): Promise<UserEntity | undefined> {
-    return this.userRepository.findOneOrFail({ email });
+    return this.userRepository.findOne({ email });
   }
 
   async findAll(): Promise<UserEntity[]> {

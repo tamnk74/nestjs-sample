@@ -10,6 +10,7 @@ import {
   ExpressAdapter,
   NestExpressApplication,
 } from '@nestjs/platform-express';
+import { ExceptionHandlerFilter } from 'exceptions/exception.handler';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -34,6 +35,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const configService = app.get(ConfigService);
+  app.useGlobalFilters(new ExceptionHandlerFilter(configService));
   await app.listen(configService.get('PORT', '3000'));
 }
 bootstrap();
