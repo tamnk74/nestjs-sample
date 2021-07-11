@@ -3,13 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserService } from './services';
 import { AuthModule } from 'modules/auth';
 import { UserRepository } from 'modules/users/repositories';
+import { UserSubscriber } from './subscribers';
 
 @Module({
   imports: [
     forwardRef(() => AuthModule),
     TypeOrmModule.forFeature([UserRepository]),
   ],
-  providers: [UserService],
+  providers: [UserService, UserSubscriber],
   exports: [UserService],
 })
 export class UserModule {}

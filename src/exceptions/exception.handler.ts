@@ -35,6 +35,7 @@ export class ExceptionHandlerFilter implements ExceptionFilter {
       });
       return;
     }
+    console.error(exception);
     response.status(500).json(
       new ApiException({
         status: 500,

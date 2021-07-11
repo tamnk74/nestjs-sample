@@ -2,8 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from '../../users/services';
 import { JwtService } from '@nestjs/jwt';
 import { UserLoginDto } from '../dtos';
-import { UserNotFoundException } from 'exceptions/user-not-found.exception';
-import { UserPasswordNotValidException } from 'exceptions/user-password-not-valid.exception';
+import {
+  UserNotFoundException,
+  UserPasswordNotValidException,
+} from 'modules/auth/exceptions';
 import { UserEntity } from 'modules/users/entities';
 
 @Injectable()
