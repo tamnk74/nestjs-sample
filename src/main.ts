@@ -39,3 +39,15 @@ async function bootstrap() {
   await app.listen(configService.get('PORT', '3000'));
 }
 bootstrap();
+process
+  .on('unhandledRejection', (reason, p) => {
+    console.error(reason, 'Unhandled Rejection at Promise', p);
+  })
+  .on('uncaughtException', err => {
+    console.error(
+      new Date().toUTCString() + ' uncaughtException:',
+      err.message,
+    );
+    console.error(err.stack);
+    process.exit(1);
+  });

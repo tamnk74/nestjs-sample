@@ -1,12 +1,5 @@
 import { Exclude } from 'class-transformer';
-import {
-  Column,
-  PrimaryGeneratedColumn,
-  BeforeInsert,
-  BeforeUpdate,
-  Entity,
-} from 'typeorm';
-import { UtilsService } from 'utils/utils.service';
+import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -19,10 +12,4 @@ export class UserEntity {
   @Column()
   @Exclude()
   password: string;
-
-  @BeforeInsert()
-  @BeforeUpdate()
-  hashPassword() {
-    this.password = UtilsService.generateHash(this.password);
-  }
 }
