@@ -29,7 +29,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@nestjs/common": "^7.6.17",
+    "@nestjs/common": "^9.3.10",
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^9.0.5",
     "@nestjs/jwt": "^10.0.2",
