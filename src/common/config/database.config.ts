@@ -13,5 +13,5 @@ export const databaseConfig = async (configService: ConfigService) =>
     migrations: [__dirname + '/../../database/migrations/*{.ts,.js}'],
     synchronize: false,
     migrationsRun: true,
-    logging: true,
+    logging: configService.get('POSTGRES_LOG') === 'true',
   } as TypeOrmModuleOptions);
