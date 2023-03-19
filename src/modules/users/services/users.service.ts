@@ -7,8 +7,8 @@ import { UserRepository } from '../repositories';
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async findOne(email: string): Promise<UserEntity | undefined> {
-    return this.userRepository.findOne({ email });
+  async findOne(email: string): Promise<UserEntity | null> {
+    return this.userRepository.findOneBy({ email });
   }
 
   async findAll(): Promise<UserEntity[]> {

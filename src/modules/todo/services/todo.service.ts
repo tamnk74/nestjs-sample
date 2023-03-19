@@ -16,8 +16,8 @@ export class TodoService {
     return this.todoRepository.find();
   }
 
-  getById(id: number): Promise<TodoEntity | undefined> {
-    return this.todoRepository.findOne(id);
+  getById(id: number): Promise<TodoEntity | null> {
+    return this.todoRepository.findOneBy({ id });
   }
 
   update(todoModel: TodoRequest): Promise<TodoEntity> {

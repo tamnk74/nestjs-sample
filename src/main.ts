@@ -4,7 +4,7 @@ import * as compression from 'compression';
 import * as helmet from 'helmet';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as RateLimit from 'express-rate-limit';
+import rateLimit from 'express-rate-limit';
 import * as morgan from 'morgan';
 import {
   ExpressAdapter,
@@ -29,14 +29,17 @@ async function bootstrap() {
 
   app.enable('trust proxy');
   app.use(helmet());
-  app.use(RateLimit({ windowMs: 15 * 60 * 1000, max: 200 }));
+  app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 200 }));
   app.use(compression());
   app.use(morgan('combined'));
   app.setGlobalPrefix('api');
 
   const configService = app.get(ConfigService);
   app.useGlobalFilters(new ExceptionHandlerFilter(configService));
-  await app.listen(configService.get('PORT', '3000'));
+  await app.listen(
+    configService.get<string>('PORT' as never, '3000'),
+    '0.0.0.0',
+  );
 }
 bootstrap();
 process
