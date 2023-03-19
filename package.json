@@ -31,7 +31,6 @@
   "dependencies": {
     "@nestjs/common": "^7.6.18",
     "@nestjs/config": "^0.6.3",
-<<<<<<< HEAD
     "@nestjs/core": "^9.0.5",
     "@nestjs/jwt": "^10.0.2",
     "@nestjs/passport": "^7.1.5",
@@ -40,22 +39,11 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-=======
-    "@nestjs/core": "^7.6.18",
-    "@nestjs/jwt": "^7.2.0",
-    "@nestjs/passport": "^7.1.6",
-    "@nestjs/platform-express": "^7.6.18",
-    "@nestjs/typeorm": "^7.1.5",
-    "bcryptjs": "^2.4.3",
-    "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.2",
->>>>>>> 97dc665 (chore: update env)
     "compression": "^1.7.4",
     "express-rate-limit": "^5.5.1",
     "helmet": "^4.6.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
-<<<<<<< HEAD
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
@@ -64,16 +52,6 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "typeorm": "^0.3.11"
-=======
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0",
-    "pg": "^8.10.0",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^6.6.7",
-    "typeorm": "^0.2.45"
->>>>>>> 97dc665 (chore: update env)
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
