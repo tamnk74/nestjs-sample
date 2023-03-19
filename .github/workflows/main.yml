@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [master, develop]
+    branches: [main, develop]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-        mongodb-version: ['4.2']
+        # mongodb-version: ['4.2']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -37,10 +37,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.6.0
-        with:
-          mongodb-version: ${{ matrix.mongodb-version }}
+      # - name: Start MongoDB
+      #   uses: supercharge/mongodb-github-action@1.6.0
+      #   with:
+      #     mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm ci
       - run: npm run lint
       - run: npm run ts-check
