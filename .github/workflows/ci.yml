@@ -32,7 +32,7 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Type check
-        run: npm run type-check
+        run: npm run ts-check
       - name: Unit Test
         run: npm run test:cov
 
