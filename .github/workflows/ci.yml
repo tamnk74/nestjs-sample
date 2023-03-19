@@ -1,0 +1,51 @@
+name: Continuous Integration
+
+on:
+  workflow_call:
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Setup
+        run: |
+          unset NPM_CONFIG_USER
+          npm i
+          # npm audit --audit-level=critical
+      - name: Lint
+        run: npm run lint
+      - name: Type check
+        run: npm run type-check
+      - name: Unit Test
+        run: npm run test:cov
+
+      - name: Archive Coverage Report Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+      - name: Build
+        run: npm run build
+
+      - name: Archive Dist Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
