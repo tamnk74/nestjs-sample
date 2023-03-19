@@ -1,27 +1,35 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "skipLibCheck": true,
+    "lib": ["ES2020"],
     "declaration": true,
+    "resolveJsonModule": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es5",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitOverride": false,
+    "noImplicitAny": true,
+    "target": "es2020",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./src",
     "incremental": true,
+    "importHelpers": true,
+    "strictPropertyInitialization": false,
     "paths": {
-      "guards/*": ["guards/*"],
-      "modules/*": ["modules/*"]
+      "@systems/*": ["src/modules/systems/*"],
+      "@shared/*": ["src/modules/shared/*"],
+      "@import-shipments/*": ["src/modules/import-shipment/*"]
     }
-  },
-  "include": ["src/*"],
-  "exclude": [
-    "node_modules",
-    "./node_modules",
-    "./node_modules/*",
-    "./node_modules/@types/node/index.d.ts"
-  ]
+  }
 }

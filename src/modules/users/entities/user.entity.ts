@@ -4,12 +4,12 @@ import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
 @Entity({ name: 'users' })
 export class UserEntity {
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  id!: number;
 
   @Column({ unique: true })
-  email: string;
+  email!: string;
 
   @Column()
   @Exclude()
-  password: string;
+  password!: string;
 }

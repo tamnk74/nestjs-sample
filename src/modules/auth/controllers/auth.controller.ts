@@ -31,12 +31,12 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('me')
-  getProfile(@Request() req) {
+  getProfile(@Request() req: { user: unknown }) {
     return req.user;
   }
 
   @Get('dec')
-  getDecorator(@User() user) {
+  getDecorator(@User() user: unknown) {
     return user;
   }
 
