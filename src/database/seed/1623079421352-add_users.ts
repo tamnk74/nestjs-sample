@@ -1,10 +1,13 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
 
 export class addUsers1623079421352 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync('Admin123', salt);
     await queryRunner.query(
       'INSERT INTO users(email, password) VALUES ($1, $2)',
-      ['admin@mailinator.com', 'Admin123'],
+      ['admin@mailinator.com', hash],
     );
   }
 
