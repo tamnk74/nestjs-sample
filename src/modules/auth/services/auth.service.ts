@@ -1,14 +1,14 @@
-import { ConfigService } from '@nestjs/config';
-import { Injectable, forwardRef, Inject } from '@nestjs/common';
-import { UserService } from '../../users/services';
-import { JwtService } from '@nestjs/jwt';
-import { UserLoginDto } from '../dtos';
 import {
   UserNotFoundException,
   UserPasswordNotValidException,
-} from 'modules/auth/exceptions';
-import { UserEntity } from 'modules/users/entities';
+} from '@/modules/auth/exceptions';
+import { UserEntity } from '@/modules/users/entities';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { UserService } from '../../users/services';
+import { UserLoginDto } from '../dtos';
 
 @Injectable()
 export class AuthService {

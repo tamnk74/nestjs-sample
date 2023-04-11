@@ -1,4 +1,4 @@
-import { TodoEntity } from 'modules/todo/entities';
+import { TodoEntity } from '@/modules/todo/entities';
 export class TodoResponse {
   id: number;
   name: string;

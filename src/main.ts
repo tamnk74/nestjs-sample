@@ -1,16 +1,16 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app';
-import * as compression from 'compression';
-import * as helmet from 'helmet';
+import { ExceptionHandlerFilter } from '@/exceptions';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import rateLimit from 'express-rate-limit';
-import * as morgan from 'morgan';
+import { NestFactory } from '@nestjs/core';
 import {
   ExpressAdapter,
   NestExpressApplication,
 } from '@nestjs/platform-express';
-import { ExceptionHandlerFilter } from 'exceptions/exception.handler';
+import * as compression from 'compression';
+import rateLimit from 'express-rate-limit';
+import * as helmet from 'helmet';
+import * as morgan from 'morgan';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(

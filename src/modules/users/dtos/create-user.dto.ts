@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsEmail, IsString } from 'class-validator';
-import { Trim } from 'decorators/transforms.decorator';
+import { Trim } from '@/decorators/transforms.decorator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()

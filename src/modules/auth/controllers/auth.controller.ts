@@ -1,16 +1,16 @@
+import { User } from '@/decorators';
+import { AuthGuard } from '@/guards';
 import {
-  Controller,
-  Request,
-  Post,
-  Get,
-  UseGuards,
   Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from 'guards';
+import { ConfigService } from '@nestjs/config';
 import { UserLoginDto } from '../dtos';
 import { AuthService } from '../services';
-import { User } from 'decorators';
-import { ConfigService } from '@nestjs/config';
 
 @Controller('')
 export class AuthController {
