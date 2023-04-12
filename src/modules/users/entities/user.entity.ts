@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import { Exclude } from 'class-transformer';
+import { Exclude, instanceToPlain } from 'class-transformer';
 import {
   AfterLoad,
   BeforeInsert,
@@ -42,6 +42,10 @@ export class UserEntity {
       const salt = await bcrypt.genSalt();
       this.password = await bcrypt.hash(this.password, salt);
     }
+  }
+
+  toJSON() {
+    return instanceToPlain(this);
   }
 
   @CreateDateColumn()
