@@ -22,14 +22,12 @@
     "target": "es2020",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "incremental": true,
     "importHelpers": true,
     "strictPropertyInitialization": false,
     "paths": {
-      "@systems/*": ["src/modules/systems/*"],
-      "@shared/*": ["src/modules/shared/*"],
-      "@import-shipments/*": ["src/modules/import-shipment/*"]
+      "@/*": ["src/*"]
     }
   }
 }

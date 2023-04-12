@@ -1,23 +1,14 @@
-import {
-  Controller,
-  Request,
-  Post,
-  Get,
-  UseGuards,
-  Body,
-} from '@nestjs/common';
-import { JwtAuthGuard } from 'guards';
+import { User } from '@/decorators';
+import { AuthGuard } from '@/guards';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { instanceToPlain } from 'class-transformer';
 import { UserLoginDto } from '../dtos';
+import { AuthPayload } from '../interfaces/auth.interface';
 import { AuthService } from '../services';
-import { User } from 'decorators';
-import { ConfigService } from '@nestjs/config';
 
 @Controller('')
 export class AuthController {
-  constructor(
-    private authService: AuthService,
-    private configService: ConfigService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @Post('login')
   async login(@Body() userLoginDto: UserLoginDto) {
@@ -29,19 +20,10 @@ export class AuthController {
     };
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @Get('me')
-  getProfile(@Request() req: { user: unknown }) {
-    return req.user;
-  }
-
-  @Get('dec')
-  getDecorator(@User() user: unknown) {
-    return user;
-  }
-
-  @Get('env')
-  getEnv() {
-    return this.configService;
+  async getProfile(@User() user: AuthPayload) {
+    const userEntity = await this.authService.getAuthUser(user.id);
+    return instanceToPlain(userEntity);
   }
 }

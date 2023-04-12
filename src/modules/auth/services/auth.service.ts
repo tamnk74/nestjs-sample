@@ -1,33 +1,58 @@
-import { Injectable, forwardRef, Inject } from '@nestjs/common';
-import { UserService } from '../../users/services';
-import { JwtService } from '@nestjs/jwt';
-import { UserLoginDto } from '../dtos';
 import {
   UserNotFoundException,
   UserPasswordNotValidException,
-} from 'modules/auth/exceptions';
-import { UserEntity } from 'modules/users/entities';
+} from '@/modules/auth/exceptions';
+import { UserEntity } from '@/modules/users/entities';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcryptjs';
+import { Repository } from 'typeorm';
+import { UserLoginDto } from '../dtos';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private userService: UserService,
+    private configService: ConfigService,
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
     @Inject(forwardRef(() => JwtService)) private jwtService: JwtService,
   ) {}
 
   async validateUser(userLoginDto: UserLoginDto): Promise<any> {
-    const user = await this.userService.findOne(userLoginDto.email);
+    const user = await this.userRepository.findOne({
+      where: {
+        email: userLoginDto.email,
+      },
+    });
     if (!user) {
       throw new UserNotFoundException();
     }
-    if (user?.password !== userLoginDto.password) {
+    const isValidPassword = await bcrypt.compare(
+      userLoginDto.password,
+      user.password,
+    );
+
+    if (!isValidPassword) {
       throw new UserPasswordNotValidException();
     }
+
+    return user;
+  }
+
+  async getAuthUser(userId: number): Promise<any> {
+    const user = await this.userRepository.findOneBy({
+      id: userId,
+    });
+
     return user;
   }
 
   async generateToken(user: UserEntity) {
-    const payload = { username: user.email, sub: user.id };
-    return this.jwtService.sign(payload);
+    const payload = { name: user.name, email: user.email, id: user.id };
+    return this.jwtService.signAsync(payload, {
+      secret: this.configService.get('JWT_SECRET'),
+    });
   }
 }
