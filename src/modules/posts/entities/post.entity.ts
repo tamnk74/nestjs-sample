@@ -1,5 +1,5 @@
-import { UserEntity } from '@/modules/users/entities';
 import { instanceToPlain } from 'class-transformer';
+import { UserEntity } from 'src/modules/users/entities';
 import {
   Column,
   CreateDateColumn,

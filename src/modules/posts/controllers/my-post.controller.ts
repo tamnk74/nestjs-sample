@@ -1,6 +1,3 @@
-import { User } from '@/decorators';
-import { AuthGuard } from '@/guards';
-import { UserEntity } from '@/modules/users/entities';
 import {
   Body,
   Controller,
@@ -13,6 +10,9 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
+import { User } from 'src/decorators';
+import { AuthGuard } from 'src/guards';
+import { UserEntity } from 'src/modules/users/entities';
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
 import { PostRequest } from '../dtos';
 import { PostEntity } from '../entities';

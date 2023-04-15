@@ -1,5 +1,5 @@
-import { UserEntity } from '@/modules/users/entities';
 import { IsString } from 'class-validator';
+import { UserEntity } from 'src/modules/users/entities';
 
 export class PostRequest {
   id?: number;
