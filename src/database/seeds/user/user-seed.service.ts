@@ -22,7 +22,7 @@ export class UserSeedService {
         this.repository.create({
           name: 'Admin',
           email: 'admin@example.com',
-          password: 'Admin123',
+          password: process.env.DEFAULT_USER_PASSWORD,
         }),
       );
     }

@@ -1,5 +1,5 @@
+import * as bcryptjs from 'bcryptjs';
 import {
-  Connection,
   EntitySubscriberInterface,
   EventSubscriber,
   InsertEvent,
@@ -8,15 +8,15 @@ import { UserEntity } from '../entities';
 
 @EventSubscriber()
 export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
-  constructor(connection: Connection) {
-    connection.subscribers.push(this);
-  }
-
   listenTo() {
     return UserEntity;
   }
 
   beforeInsert(event: InsertEvent<UserEntity>) {
     console.log(`BEFORE USER INSERTED: `, event.entity);
+    if (event.entity.password) {
+      const salt = bcryptjs.genSaltSync(10);
+      event.entity.password = bcryptjs.hashSync(event.entity.password, salt);
+    }
   }
 }
