@@ -1,7 +1,7 @@
-import { UserEntity } from '@/modules/users/entities';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import slugify from 'slugify';
+import { UserEntity } from 'src/modules/users/entities';
 import { DeleteResult, InsertResult, Repository, UpdateResult } from 'typeorm';
 import { PostRequest } from '../dtos';
 import { PostEntity } from '../entities';

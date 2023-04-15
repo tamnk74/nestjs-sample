@@ -1,13 +1,13 @@
-import {
-  UserNotFoundException,
-  UserPasswordNotValidException,
-} from '@/modules/auth/exceptions';
-import { UserEntity } from '@/modules/users/entities';
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
+import {
+  UserNotFoundException,
+  UserPasswordNotValidException,
+} from 'src/modules/auth/exceptions';
+import { UserEntity } from 'src/modules/users/entities';
 import { Repository } from 'typeorm';
 import { UserLoginDto } from '../dtos';
 

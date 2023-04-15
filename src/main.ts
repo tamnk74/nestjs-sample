@@ -1,4 +1,3 @@
-import { ExceptionHandlerFilter } from '@/exceptions';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
@@ -10,6 +9,7 @@ import * as compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 import * as morgan from 'morgan';
+import { ExceptionHandlerFilter } from 'src/exceptions';
 import { AppModule } from './app.module';
 
 async function bootstrap() {

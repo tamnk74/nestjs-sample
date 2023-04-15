@@ -1,7 +1,7 @@
-import { User } from '@/decorators';
-import { AuthGuard } from '@/guards';
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { instanceToPlain } from 'class-transformer';
+import { User } from 'src/decorators';
+import { AuthGuard } from 'src/guards';
 import { UserLoginDto } from '../dtos';
 import { AuthPayload } from '../interfaces/auth.interface';
 import { AuthService } from '../services';

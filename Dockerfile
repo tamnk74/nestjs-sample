@@ -19,7 +19,7 @@ ENV NODE_ENV production
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --only=production
+RUN npm ci --production
 COPY --chown=node:node . .
 COPY --from=buider --chown=node:node /app/dist ./dist
 USER node
