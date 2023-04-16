@@ -9,7 +9,7 @@ import {
 } from 'src/modules/auth/exceptions';
 import { UserEntity } from 'src/modules/users/entities';
 import { Repository } from 'typeorm';
-import { UserLoginDto } from '../dtos';
+import { RefreshTokenDto, UserLoginDto } from '../dtos';
 
 @Injectable()
 export class AuthService {
@@ -41,6 +41,23 @@ export class AuthService {
     return user;
   }
 
+  async validateRefreshToken(refreshTokenDto: RefreshTokenDto): Promise<any> {
+    const payload = await this.jwtService.verifyAsync(
+      refreshTokenDto.refreshToken,
+      {
+        secret: this.configService.get('auth.refreshSecret'),
+      },
+    );
+
+    const user = await this.userRepository.findOneBy({ id: payload.id });
+
+    if (!user) {
+      throw new UserNotFoundException();
+    }
+
+    return user;
+  }
+
   async getAuthUser(userId: number): Promise<any> {
     const user = await this.userRepository.findOneBy({
       id: userId,
@@ -52,7 +69,14 @@ export class AuthService {
   async generateToken(user: UserEntity) {
     const payload = { name: user.name, email: user.email, id: user.id };
     return this.jwtService.signAsync(payload, {
-      secret: this.configService.get('JWT_SECRET'),
+      secret: this.configService.get('auth.secret'),
+    });
+  }
+
+  async generateRefreshToken(user: UserEntity) {
+    const payload = { id: user.id };
+    return this.jwtService.signAsync(payload, {
+      secret: this.configService.get('auth.refreshSecret'),
     });
   }
 }
