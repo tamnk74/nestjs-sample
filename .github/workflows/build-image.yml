@@ -2,10 +2,15 @@ name: Build docker image
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -20,4 +25,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: user/app:latest
+          tags: nestjs/boilerplate:latest
