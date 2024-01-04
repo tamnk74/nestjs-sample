@@ -54,7 +54,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.8.0",
     "slugify": "^1.6.6",
-    "typeorm": "^0.3.7"
+    "typeorm": "^0.3.18"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
